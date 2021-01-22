@@ -1,0 +1,3 @@
+id;author;filename;dateexecuted;orderexecuted;exectype;md5sum;description;comments;tag;liquibase;contexts;labels;deployment_id
+1611229478450-1;User (generated);data/changelog/db.changelog-0.0.1.xml;2021-01-21 14:46:33.926573;1;EXECUTED;;createSequence sequenceName=hibernate_sequence;"";;3.8.9;;;1229593888
+1611230856393-1;User (generated);data/changelog/db.changelog-0.0.1.xml;2021-01-21 15:14:45.087584;2;EXECUTED;8:9df4ee4464a4a10dfcf2717c73a52620;createSequence sequenceName=hibernate_sequence;"";;3.8.9;;;1231285057

@@ -1,0 +1,188 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="User (generated)" id="1611293201875-1" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-2" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="conference">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_time" type="TIMESTAMP(6) WITHOUT TIME ZONE"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+            <column name="conference_room_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-3" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="conference_feedbacks">
+            <column name="conference_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="feedbacks_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-4" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="conference_registration_requests">
+            <column name="conference_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registration_requests_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-5" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="conference_room">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="capacity" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="status" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-6" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="conference_room_conference">
+            <column name="conference_room_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="conference_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-7" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="feedback">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="VARCHAR(255)"/>
+            <column name="content" type="VARCHAR(255)"/>
+            <column name="conference_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-8" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createTable tableName="registration_request">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="date"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="first_name" type="VARCHAR(255)"/>
+            <column name="gender" type="VARCHAR(255)"/>
+            <column name="participant_code" type="VARCHAR(255)"/>
+            <column name="second_name" type="VARCHAR(255)"/>
+            <column name="conference_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-9" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="id" constraintName="conference_pkey" tableName="conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-10" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="id" constraintName="conference_room_pkey" tableName="conference_room"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-11" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="id" constraintName="feedback_pkey" tableName="feedback"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-12" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addPrimaryKey columnNames="id" constraintName="registration_request_pkey" tableName="registration_request"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-13" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="conference_id" constraintName="uk_febhlexthlm8c8xq5qm1qc1tu" tableName="conference_room_conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-14" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="registration_requests_id" constraintName="uk_nrnj2m2dftw5rqmmllffbwkap" tableName="conference_registration_requests"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-15" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addUniqueConstraint columnNames="feedbacks_id" constraintName="uk_rpfg2vofapqdussssw650jfik" tableName="conference_feedbacks"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-16" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_id" baseTableName="conference_registration_requests" constraintName="fk35fvga3vna4j7ytxt4uavnno2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-17" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_room_id" baseTableName="conference_room_conference" constraintName="fk5fvtxhljtb7ck7q031g1dbu5c" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference_room"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-18" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_id" baseTableName="feedback" constraintName="fkdm7f4h86lkl9d1xdriydujra2" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-19" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_room_id" baseTableName="conference" constraintName="fkgy8ou0i3fhiqjbtw4vp69o9dv" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference_room"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-20" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_id" baseTableName="conference_room_conference" constraintName="fkhogggii32rfdg4gkqvtqksy8b" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-21" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_id" baseTableName="conference_feedbacks" constraintName="fkkt0vlw2m885yww2smqnwbsoll" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-22" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="feedbacks_id" baseTableName="conference_feedbacks" constraintName="fko29kcg5vydyekxy4y3d6shspc" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="feedback"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-23" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="conference_id" baseTableName="registration_request" constraintName="fkoslnc9pg0wp4qfssvshdn3qyr" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="conference"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-24" objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint baseColumnNames="registration_requests_id" baseTableName="conference_registration_requests" constraintName="fktmjq7vkv5ei9wcdbom648gj8o" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="registration_request"/>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-25" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.conference_room.csv" tableName="conference_room" separator=";">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="capacity" name="capacity" type="NUMERIC"/>
+            <column header="location" name="location" type="STRING"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="status" name="status" type="STRING"/>
+        </loadUpdateData>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-26" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.conference.csv" tableName="conference" separator=";">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="date_time" name="date_time" type="DATE"/>
+            <column header="name" name="name" type="STRING"/>
+            <column header="status" name="status" type="STRING"/>
+            <column header="conference_room_id" name="conference_room_id" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-27" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.registration_request.csv" tableName="registration_request" separator=";">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="birth_date" name="birth_date" type="DATE"/>
+            <column header="email" name="email" type="STRING"/>
+            <column header="first_name" name="first_name" type="STRING"/>
+            <column header="gender" name="gender" type="STRING"/>
+            <column header="participant_code" name="participant_code" type="STRING"/>
+            <column header="second_name" name="second_name" type="STRING"/>
+            <column header="conference_id" name="conference_id" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-28" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.feedback.csv" tableName="feedback" separator=";">
+            <column header="id" name="id" type="NUMERIC"/>
+            <column header="author" name="author" type="STRING"/>
+            <column header="content" name="content" type="STRING"/>
+            <column header="conference_id" name="conference_id" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-29" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.conference_registration_requests.csv" tableName="conference_registration_requests" separator=";">
+            <column header="conference_id" name="conference_id" type="NUMERIC"/>
+            <column header="registration_requests_id" name="registration_requests_id" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-30" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.conference_room_conference.csv" tableName="conference_room_conference" separator=";">
+            <column header="conference_room_id" name="conference_room_id" type="NUMERIC"/>
+            <column header="conference_id" name="conference_id" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+    <changeSet author="User (generated)" id="1611293201875-31" objectQuotingStrategy="QUOTE_ALL_OBJECTS" runAlways="true">
+        <loadUpdateData primaryKey ="id" file="src/main/resources/data/changelog/testdata/public.conference_feedbacks.csv" tableName="conference_feedbacks" separator=";">
+            <column header="conference_id" name="conference_id" type="NUMERIC"/>
+            <column header="feedbacks_id" name="feedbacks_id" type="NUMERIC"/>
+        </loadUpdateData>
+    </changeSet>
+</databaseChangeLog>
